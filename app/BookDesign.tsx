@@ -3,7 +3,6 @@ import React from 'react'
 export default function BookDesign() {
   return (
     <div className="max-w-2xl w-full mx-auto p-4 sm:p-6 md:p-8 text-base sm:text-lg">
-      <h2 className="text-xl sm:text-2xl font-bold mb-4">Book Design</h2>
       <ul className="space-y-2">
         <li>
           <a href="https://www.scotlandstreetpress.com/" className="text-blue-700 hover:underline hover:text-blue-900 focus:underline" target="_blank" rel="noopener noreferrer">
@@ -33,7 +32,7 @@ export default function BookDesign() {
         <li>
           <a href="#" className="text-blue-700 hover:underline hover:text-blue-900 focus:underline" target="_blank" rel="noopener noreferrer">
             Cymbalism & Lemonade
-          </a>, riso printed at Sunday's, Glasgow, 2020
+          </a>, riso printed at Sundays, Glasgow, 2020
         </li>
       </ul>
     </div>

@@ -35,8 +35,8 @@ export default function Visual() {
             </button>
             <video
               src="/imagees/Visual/Elastic Love.mp4"
-              controls
               autoPlay
+              controls
               className="w-full max-h-[70vh] rounded"
             />
             <div className="text-white mt-2 text-center">Elastic Love (Experimental Dance Film, 13mins)</div>
@@ -67,7 +67,7 @@ export default function Visual() {
           </button>
           , Embassy Gallery, 2022; Transmission Gallery, 2023<br />Experimental Dance Film, 13mins [View on Request]
         </li>
-        <li>"Double-Take", Glasgow School of Art<br />A collaborative exhibition of work produced between writers and designers, 2019</li>
+  <li>&quot;Double-Take&quot;, Glasgow School of Art<br />A collaborative exhibition of work produced between writers and designers, 2019</li>
       </ul>
     </div>
   );

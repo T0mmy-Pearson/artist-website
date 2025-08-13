@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import * as THREE from "three";
 
 const Sun3D: React.FC = () => {
@@ -16,7 +16,7 @@ const Sun3D: React.FC = () => {
     // Pick a random texture on each load
     const randomIndex = Math.floor(Math.random() * globeTextures.length);
 
-    let texture, material, sphere;
+  // Use const for variables that are never reassigned
 
     const handleResize = () => {
       if (!mountRef.current) return;
@@ -41,10 +41,10 @@ const Sun3D: React.FC = () => {
     // Sphere geometry
     const geometry = new THREE.SphereGeometry(1, 64, 64);
     const textureLoader = new THREE.TextureLoader();
-    texture = textureLoader.load(globeTextures[randomIndex]);
-    material = new THREE.MeshBasicMaterial({ map: texture });
-    sphere = new THREE.Mesh(geometry, material);
-    scene.add(sphere);
+  const texture = textureLoader.load(globeTextures[randomIndex]);
+  const material = new THREE.MeshBasicMaterial({ map: texture });
+  const sphere = new THREE.Mesh(geometry, material);
+  scene.add(sphere);
 
     // Animation loop
     const animate = () => {
