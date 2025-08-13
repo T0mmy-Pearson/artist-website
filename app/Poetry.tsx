@@ -2,12 +2,12 @@ import React from 'react'
 
 export default function Poetry() {
   return (
-    <div className="flex flex-col md:flex-row gap-8 items-start w-full max-w-4xl mx-auto p-4 text-black">
-      <div className="flex-shrink-0 w-full md:w-1/3 flex justify-center md:justify-start">
+  <div className="flex flex-col md:flex-row gap-4 sm:gap-8 items-start w-full max-w-4xl mx-auto p-2 sm:p-4 text-black">
+      <div className="flex-shrink-0 w-full md:w-1/3 flex justify-center md:justify-start mb-4 md:mb-0">
         <img
           src="/imagees/5.jpg"
           alt="Cover of pamphlet Cymbalism and Lemonade"
-          className="rounded shadow max-w-xs w-full h-auto object-cover"
+          className="rounded shadow w-full max-w-[220px] h-auto object-cover"
         />
       </div>
       <div className="flex-1 w-full">

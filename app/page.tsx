@@ -32,14 +32,14 @@ export default function Home() {
   }, [menuOpen]);
 
   return (
-    <div className="font-sans grid grid-rows-[20px_auto_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-8 sm:p-20">
+  <div className="font-sans grid grid-rows-[20px_auto_1fr_20px] items-center justify-items-center min-h-screen p-4 sm:p-8 pb-20 gap-4 sm:gap-8">
       <div className="row-start-1 flex justify-start items-start w-full ml-100">
         <Title onClick={() => setSelected(null)} />
       </div>
       {/* Menu bar */}
       {menuOpen && (
         <div className="row-start-2 w-full flex justify-center items-center min-h-[40px]" ref={menuRef}>
-          <nav className="flex gap-4 bg-white rounded px-4 py-2 z-50 transition-all duration-300 ease-out opacity-0 translate-y-4 animate-[fadeInMenu_0.3s_ease-out_forwards]">
+          <nav className="flex flex-col sm:flex-row gap-2 sm:gap-4 bg-white rounded px-2 sm:px-4 py-2 z-50 transition-all duration-300 ease-out opacity-0 translate-y-4 animate-[fadeInMenu_0.3s_ease-out_forwards]">
             <button onClick={() => { setSelected("Poetry"); setMenuOpen(false); }} className="px-3 py-1 hover:bg-gray-100 rounded">Poetry</button>
             <button onClick={() => { setSelected("Visual"); setMenuOpen(false); }} className="px-3 py-1 hover:bg-gray-100 rounded">Visual</button>
             <button onClick={() => { setSelected("Journalism"); setMenuOpen(false); }} className="px-3 py-1 hover:bg-gray-100 rounded">Journalism</button>
@@ -49,8 +49,8 @@ export default function Home() {
 
         </div>
       )}
-      <main className="flex flex-col gap-[32px] row-start-3 items-center sm:items-start w-full h-full">
-        <div className="w-full aspect-[16/9] max-h-[60vh] md:max-h-[60vh] lg:max-h-[60vh] relative">
+      <main className="flex flex-col gap-6 sm:gap-8 row-start-3 items-center sm:items-start w-full h-full">
+        <div className="w-full aspect-[16/9] max-h-[40vh] sm:max-h-[60vh] relative overflow-x-auto">
           {/* Sun3D is always rendered, but animates position/scale based on selection */}
           <div
             className={`absolute transition-all duration-700 ease-in-out 
@@ -83,7 +83,7 @@ export default function Home() {
           )}
         </div>
       </main>
-      <footer className="row-start-4 flex gap-[24px] flex-wrap items-center justify-center w-full">
+  <footer className="row-start-4 flex flex-wrap gap-4 sm:gap-6 items-center justify-center w-full px-2 text-sm sm:text-base">
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4 z-10"
           href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"

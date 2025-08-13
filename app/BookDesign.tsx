@@ -2,8 +2,8 @@ import React from 'react'
 
 export default function BookDesign() {
   return (
-    <div className="max-w-2xl w-full mx-auto p-4 sm:p-6 md:p-8 text-base sm:text-lg">
-      <ul className="space-y-2">
+  <div className="max-w-2xl w-full mx-auto p-2 sm:p-4 md:p-8 text-base sm:text-lg">
+  <ul className="space-y-2 break-words">
         <li>
           <a href="https://www.scotlandstreetpress.com/" className="text-blue-700 hover:underline hover:text-blue-900 focus:underline" target="_blank" rel="noopener noreferrer">
             Scotland Street Press
