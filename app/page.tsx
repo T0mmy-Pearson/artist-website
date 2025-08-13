@@ -1,90 +1,126 @@
+"use client";
 import Image from "next/image";
+import Sun3D from "./Sun3D";
+import Poetry from "./Poetry";
+import Visual from "./Visual";
+import Sound from "./Sound";
+import Journalism from "./Journalism";
+import BookDesign from "./BookDesign";
+import Title from "./title";
+import React, { useState, useRef, useEffect } from "react";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [selected, setSelected] = useState<string | null>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  // Close menu on outside click
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setMenuOpen(false);
+      }
+    }
+    if (menuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [menuOpen]);
+
+  return (
+    <div className="font-sans grid grid-rows-[20px_auto_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-8 sm:p-20">
+      <div className="row-start-1 flex justify-start items-start w-full ml-100">
+        <Title onClick={() => setSelected(null)} />
+      </div>
+      {/* Menu bar */}
+      {menuOpen && (
+        <div className="row-start-2 w-full flex justify-center items-center min-h-[40px]" ref={menuRef}>
+          <nav className="flex gap-4 bg-white rounded px-4 py-2 z-50 transition-all duration-300 ease-out opacity-0 translate-y-4 animate-[fadeInMenu_0.3s_ease-out_forwards]">
+            <button onClick={() => { setSelected("Poetry"); setMenuOpen(false); }} className="px-3 py-1 hover:bg-gray-100 rounded">Poetry</button>
+            <button onClick={() => { setSelected("Visual"); setMenuOpen(false); }} className="px-3 py-1 hover:bg-gray-100 rounded">Visual</button>
+            <button onClick={() => { setSelected("Journalism"); setMenuOpen(false); }} className="px-3 py-1 hover:bg-gray-100 rounded">Journalism</button>
+            <button onClick={() => { setSelected("Sound"); setMenuOpen(false); }} className="px-3 py-1 hover:bg-gray-100 rounded">Sound</button>
+            <button onClick={() => { setSelected("BookDesign"); setMenuOpen(false); }} className="px-3 py-1 hover:bg-gray-100 rounded">BookDesign</button>
+          </nav>
+
+        </div>
+      )}
+      <main className="flex flex-col gap-[32px] row-start-3 items-center sm:items-start w-full h-full">
+        <div className="w-full aspect-[16/9] max-h-[60vh] md:max-h-[60vh] lg:max-h-[60vh] relative">
+          {/* Sun3D is always rendered, but animates position/scale based on selection */}
+          <div
+            className={`absolute transition-all duration-700 ease-in-out 
+              ${selected ? 'top-4 right-4 w-32 h-32 opacity-60 scale-75 z-10 pointer-events-none' : 'inset-0 w-full h-full opacity-100 scale-100 z-20'}
+            `}
+            style={{ pointerEvents: selected ? 'none' : 'auto' }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <Sun3D />
+          </div>
+          {/* Render selected component on top if any */}
+          {selected && (
+            <div className="absolute inset-0 w-full h-full z-20">
+              {(() => {
+                switch (selected) {
+                  case "Poetry":
+                    return <Poetry />;
+                  case "Visual":
+                    return <Visual />;
+                  case "Journalism":
+                    return <Journalism />;
+                  case "Sound":
+                    return <Sound />;
+                  case "BookDesign":
+                    return <BookDesign />;
+                  default:
+                    return null;
+                }
+              })()}
+            </div>
+          )}
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
+      <footer className="row-start-4 flex gap-[24px] flex-wrap items-center justify-center w-full">
         <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+          className="flex items-center gap-2 hover:underline hover:underline-offset-4 z-10"
           href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
+          z-index="10"
+          color="white"
         >
           <Image
             aria-hidden
             src="/file.svg"
             alt="File icon"
-            width={16}
-            height={16}
+            width={32}
+            height={32}
           />
-          Learn
+          T. Person
         </a>
+        <div className="relative">
+          <button
+            className="flex items-center gap-2 hover:underline hover:underline-offset-4 size-32 focus:outline-none"
+            onClick={() => setMenuOpen((open) => !open)}
+            aria-haspopup="true"
+            aria-expanded={menuOpen}
+          >
+            <Image
+              aria-hidden
+              src="/window.svg"
+              alt="Window icon"
+              width={32}
+              height={32}
+            />
+            Examples
+          </button>
+        </div>
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          href="https://bdsmovement.net/"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -92,10 +128,20 @@ export default function Home() {
             aria-hidden
             src="/globe.svg"
             alt="Globe icon"
-            width={16}
-            height={16}
+            width={32}
+            height={32}
           />
-          Go to nextjs.org →
+          Leave →
+        </a>
+        <a
+          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+          href="https://instagram.com/_tperson_/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span className="inline-block" aria-hidden>
+            <svg role="img" viewBox="0 0 24 24" width="32" height="32" xmlns="http://www.w3.org/2000/svg"><title>Instagram</title><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.974.974 1.246 2.241 1.308 3.608.058 1.266.069 1.646.069 4.85s-.011 3.584-.069 4.85c-.062 1.366-.334 2.633-1.308 3.608-.974.974-2.241 1.246-3.608 1.308-1.266.058-1.646.069-4.85.069s-3.584-.011-4.85-.069c-1.366-.062-2.633-.334-3.608-1.308-.974-.974-1.246-2.241-1.308-3.608C2.175 15.647 2.163 15.267 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608.974-.974 2.241-1.246 3.608-1.308C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.013 7.052.072 5.775.131 4.602.425 3.635 1.392 2.668 2.359 2.374 3.532 2.315 4.808 2.256 6.088 2.243 6.497 2.243 12c0 5.503.013 5.912.072 7.192.059 1.276.353 2.449 1.32 3.416.967.967 2.14 1.261 3.416 1.32 1.28.059 1.689.072 7.192.072s5.912-.013 7.192-.072c1.276-.059 2.449-.353 3.416-1.32.967-.967 1.261-2.14 1.32-3.416.059-1.28.072-1.689.072-7.192s-.013-5.912-.072-7.192c-.059-1.276-.353-2.449-1.32-3.416C21.449.425 20.276.131 19 .072 17.72.013 17.311 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+          </span>
         </a>
       </footer>
     </div>
