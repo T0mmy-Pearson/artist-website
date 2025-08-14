@@ -3,13 +3,12 @@ import BackArrow from './BackArrow';
 
 export default function Visual({ setSelected }: { setSelected?: (val: string | null) => void }) {
   const images = [
-    { src: "/imagees/Visual/CfW.jpg", tagline: "CfW – Collage for Work" },
-    { src: "/imagees/Visual/tea2.JPG", tagline: "Tea 2 – Still Life" },
-    { src: "/imagees/Visual/Straw.JPG", tagline: "Straw – Installation" },
-    { src: "/imagees/Visual/Bullets.png", tagline: "Bullets – Digital Illustration" },
-    { src: "/imagees/Visual/TeaPots.JPG", tagline: "Tea Pots – Found Objects" },
-    { src: "/imagees/Visual/IMG_1858.jpg", tagline: "IMG_1858 – Field Study" },
-    { src: "/imagees/Visual/Elastic Love.mp4", tagline: "Elastic Love – Experimental Dance Film" }
+    { src: "/imagees/Visual/CfW.jpg", tagline: "Colours for Wallpaper" },
+    { src: "/imagees/Visual/tea2.JPG", tagline: "Teabag affirmations - DoubleTake" },
+    { src: "/imagees/Visual/Straw.JPG", tagline: "Excess Funeral - DoubleTake" },
+    { src: "/imagees/Visual/Bullets.png", tagline: "Gummy Bullets - DoubleTake" },
+    { src: "/imagees/Visual/IMG_1858.jpg", tagline: "IMG_1858 - Field Study" },
+    { src: "/imagees/Visual/Closure.jpg", tagline: "Elastic Love - Short Film" }
   ];
   const [index, setIndex] = useState(0);
   const [showModal, setShowModal] = useState(false);
@@ -17,7 +16,7 @@ export default function Visual({ setSelected }: { setSelected?: (val: string | n
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % images.length);
-    }, 2500);
+    }, 5000); // Slower: 5 seconds per image
     return () => clearInterval(interval);
   }, [images.length]);
 
@@ -57,17 +56,16 @@ export default function Visual({ setSelected }: { setSelected?: (val: string | n
         </div>
       </div>
       <ul className="w-full md:w-1/2 space-y-4 text-black">
-        <li>“X”, a short film exhibited through Bold Mellom Collective at Rich Mix, Shoreditch, April 2024</li>
+        <li>“X”, a short film exhibited through Bold Mellon Collective at Rich Mix, Shoreditch, April 2024</li>
         <li>
+            Elastic Love
+          , Embassy Gallery, 2022; Transmission Gallery, 2023<br />Experimental Dance Film, 13mins <br /> 
           <button
             className="underline hover:text-blue-700 focus:outline-none"
             onClick={() => setShowModal(true)}
             aria-label="Play Elastic Love video"
             type="button"
-          >
-            Elastic Love
-          </button>
-          , Embassy Gallery, 2022; Transmission Gallery, 2023<br />Experimental Dance Film, 13mins [View on Request]
+          >  Watch Trailer</button>
         </li>
   <li>&quot;Double-Take&quot;, Glasgow School of Art<br />A collaborative exhibition of work produced between writers and designers, 2019</li>
       </ul>
