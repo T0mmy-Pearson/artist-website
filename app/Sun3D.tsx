@@ -50,8 +50,8 @@ const Sun3D: React.FC = () => {
     // Animation loop
     const animate = () => {
       requestAnimationFrame(animate);
-      sphere.rotation.y += 0.010;
-      sphere.rotation.x += 0.005;
+  sphere.rotation.y += 0.001;
+  sphere.rotation.x += 0.0005;
       renderer.render(scene, camera);
     };
     animate();
