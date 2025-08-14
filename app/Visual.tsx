@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 import BackArrow from './BackArrow';
 
 export default function Visual({ setSelected }: { setSelected?: (val: string | null) => void }) {
@@ -45,9 +46,11 @@ export default function Visual({ setSelected }: { setSelected?: (val: string | n
         </div>
       )}
       <div className="w-full md:w-1/2 flex justify-center items-center relative">
-        <img
+        <Image
           src={images[index].src}
           alt="Visual artwork"
+          width={400}
+          height={400}
           className="rounded shadow-lg max-h-[400px] object-contain transition-all duration-700"
           style={{ width: '100%', maxWidth: 400 }}
         />

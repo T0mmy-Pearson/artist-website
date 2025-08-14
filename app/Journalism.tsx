@@ -2,21 +2,30 @@
 
 import React, { useState } from 'react';
 import BackArrow from './BackArrow';
+import Image from 'next/image';
 
 export default function Journalism({ setSelected }: { setSelected?: (val: string | null) => void }) {
 
   const [modalImg, setModalImg] = useState<string | null>(null);
   const [popupUrl, setPopupUrl] = useState<string | null>(null);
-  const links = [
+  type JournalismLink = {
+    label: string;
+    url: string;
+    imgSrc?: string;
+    imgAlt?: string;
+  };
+  const links: JournalismLink[] = [
     {
       label: 'I want and I want and I Want @ Finger Food',
       url: 'https://www.fingerfoodmag.com/product-page/finger-food-2-new-look-same-great-taste',
-      img: <img src="/imagees/Journalism/ffwant.jpg" alt="I want and I want and I Want @ Finger Food" />
+      imgSrc: '/imagees/Journalism/ffwant.jpg',
+      imgAlt: 'I want and I want and I Want @ Finger Food',
     },
     {
       label: 'Food writing @ Substack',
       url: 'https://tpers0n.substack.com/',
-      img: <img src="/imagees/Journalism/eating.jpg" alt="Food writing @ Substack" />
+      imgSrc: '/imagees/Journalism/eating.jpg',
+      imgAlt: 'Food writing @ Substack',
     },
     {
       label: 'Lasagne by Wayne Holloway-Smith @ SPAM',
@@ -48,19 +57,23 @@ export default function Journalism({ setSelected }: { setSelected?: (val: string
               <span>{item.label}</span>
               <span className="ml-1 text-lg group-hover:translate-x-1 transition-transform">→ read</span>
             </button>
-            {item.img && (
+            {item.imgSrc && (
               <button
                 className="ml-2 focus:outline-none"
                 onClick={e => {
                   e.preventDefault();
-                  setModalImg((item.img as any).props.src);
+                  setModalImg(item.imgSrc!);
                 }}
                 aria-label="Enlarge image"
                 type="button"
               >
-                {React.cloneElement(item.img, {
-                  className: "w-14 h-14 object-cover rounded shadow border border-gray-200 hover:scale-105 transition-transform",
-                })}
+                <Image
+                  src={item.imgSrc}
+                  alt={item.imgAlt || item.label}
+                  width={56}
+                  height={56}
+                  className="w-14 h-14 object-cover rounded shadow border border-gray-200 hover:scale-105 transition-transform"
+                />
               </button>
             )}
           </li>
@@ -77,7 +90,7 @@ export default function Journalism({ setSelected }: { setSelected?: (val: string
             >
               &times;
             </button>
-            <img src={modalImg} alt="Enlarged journalism" className="w-full max-w-xs max-h-[70vh] rounded" />
+            <Image src={modalImg} alt="Enlarged journalism" className="w-full max-w-xs max-h-[70vh] rounded" width={500} height={500} />
           </div>
         </div>
       )}

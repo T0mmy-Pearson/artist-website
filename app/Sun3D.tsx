@@ -33,9 +33,10 @@ const Sun3D: React.FC = () => {
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setClearColor(0xffffff, 1);
-    if (mountRef.current) {
-      renderer.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight, false);
-      mountRef.current.appendChild(renderer.domElement);
+    const mountNode = mountRef.current;
+    if (mountNode) {
+      renderer.setSize(mountNode.clientWidth, mountNode.clientHeight, false);
+      mountNode.appendChild(renderer.domElement);
     }
 
     // Sphere geometry
@@ -55,13 +56,13 @@ const Sun3D: React.FC = () => {
     };
     animate();
 
-    window.addEventListener('resize', handleResize);
-    handleResize();
+  window.addEventListener('resize', handleResize);
+  handleResize();
 
     // Cleanup
     return () => {
       renderer.dispose();
-      if (mountRef.current) mountRef.current.removeChild(renderer.domElement);
+      if (mountNode) mountNode.removeChild(renderer.domElement);
       window.removeEventListener('resize', handleResize);
     };
   }, []);

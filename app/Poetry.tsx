@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
-import "./globals.css"; 
-import BackArrow from './BackArrow'; 
+import React, { useState } from 'react';
+import Image from 'next/image';
+import "./globals.css";
+import BackArrow from './BackArrow';
 
 export default function Poetry({ setSelected }: { setSelected?: (val: string | null) => void }) {
 
@@ -27,9 +28,11 @@ export default function Poetry({ setSelected }: { setSelected?: (val: string | n
       <div className="w-full md:w-1/2 flex flex-col items-center justify-center">
         <div className="relative w-full flex flex-col items-center ">
               <div className="w-full sm:pt-100 max-w-xs sm:max-w-sm md:max-w-xs flex items-center justify-center aspect-[3/4] bg-gray-100 rounded overflow-hidden mb-2 mx-auto mt-8 max-h-[60vh] sm:mt-0 sm:max-h-none">
-                  <img
+                  <Image
                     src={poetryImages[current].src}
                     alt={poetryImages[current].alt}
+                    width={300}
+                    height={400}
                     className="object-cover w-full h-full max-h-[50vh] sm:max-h-full"
                     style={{ aspectRatio: '3/4', maxWidth: '100%' }}
                   />
