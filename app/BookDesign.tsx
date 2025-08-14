@@ -1,9 +1,11 @@
 import React from 'react'
+import BackArrow from './BackArrow';
 
-export default function BookDesign() {
+export default function BookDesign({ setSelected }: { setSelected?: (val: string | null) => void }) {
   return (
-  <div className="max-w-2xl w-full mx-auto p-2 sm:p-4 md:p-8 text-base sm:text-lg">
-  <ul className="space-y-2 break-words">
+    <div className="max-w-2xl w-full mx-auto p-2 sm:p-4 md:p-8 text-base sm:text-lg">
+      {setSelected && <BackArrow onClick={() => setSelected(null)} />}
+      <ul className="space-y-2 break-words">
         <li>
           <a href="https://www.scotlandstreetpress.com/" className="text-blue-700 hover:underline hover:text-blue-900 focus:underline" target="_blank" rel="noopener noreferrer">
             Scotland Street Press
@@ -21,7 +23,7 @@ export default function BookDesign() {
         </li>
         <li>
           <a href="https://www.instagram.com/a.l.g.i.a/" className="text-blue-700 hover:underline hover:text-blue-900 focus:underline" target="_blank" rel="noopener noreferrer">
-            —algia journal and pamphlets
+            algia journal and pamphlets
           </a>, founding editor+designer, 2020-22
         </li>
         <li>

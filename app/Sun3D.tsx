@@ -11,7 +11,7 @@ const Sun3D: React.FC = () => {
       "/imagees/Globe/Green.JPG",
       "/imagees/Globe/Pink.jpg",
       "/imagees/Globe/Purple.JPG",
-      "/imagees/Globe/Closure.jpg"
+      "/imagees/Globe/Lilac.JPG"
     ];
     // Pick a random texture on each load
     const randomIndex = Math.floor(Math.random() * globeTextures.length);

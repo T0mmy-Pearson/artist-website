@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
+import BackArrow from './BackArrow';
 
-export default function Visual() {
+export default function Visual({ setSelected }: { setSelected?: (val: string | null) => void }) {
   const images = [
     { src: "/imagees/Visual/CfW.jpg", tagline: "CfW – Collage for Work" },
     { src: "/imagees/Visual/tea2.JPG", tagline: "Tea 2 – Still Life" },
@@ -22,6 +23,7 @@ export default function Visual() {
 
   return (
     <div className="flex flex-col md:flex-row gap-8 items-center w-full max-w-4xl mx-auto p-4">
+      {setSelected && <BackArrow onClick={() => setSelected(null)} />}
       {/* Modal for video */}
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
