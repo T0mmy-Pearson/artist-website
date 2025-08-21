@@ -9,13 +9,11 @@ import BookDesign from "./BookDesign";
 import React, { useState, useRef, useEffect } from "react";
 import MenuBar from "./MenuBar";
 
-
-
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
+  const [showBioOverlay, setShowBioOverlay] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -34,14 +32,12 @@ export default function Home() {
   }, [menuOpen]);
 
   return (
-  <div className="font-sans items-center justify-center gap-4 sm:gap-8" style={{ minHeight: '100vh', minWidth: '100vw', height: '100vh', width: '100vw' }}>
-  {selected === null && (
-    <div className="flex flex-1 w-full items-center justify-center">
-      <MenuBar selected={selected} setSelected={setSelected} />
-    </div>
-  )}
-  <main className="flex flex-1 flex-col gap-6 sm:gap-8 items-center justify-center w-full h-full" style={{ height: '100vh', width: '100vw' }}>
-  <div className="flex items-center justify-center relative w-full h-full min-h-[200px] sm:min-h-0 aspect-[16/9] max-h-[40vh] sm:max-h-[60vh] mx-auto">
+    <div className="font-sans items-center justify-center gap-4 sm:gap-8 min-h-screen w-full relative">
+      {selected === null && (
+        <MenuBar selected={selected} setSelected={setSelected} setShowBioOverlay={setShowBioOverlay} />
+      )}
+      <main className="flex flex-1 sm:gap-8 items-center w-full min-h-screen">
+        <div className="flex items-center justify-center relative w-full min-h-[200px] sm:min-h-0 aspect-[16/9] max-h-[40vh] sm:max-h-[60vh] mx-auto">
           {/* Sun3D is always rendered, but animates position/scale based on selection */}
           <div
             className={`transition-all duration-700 ease-in-out flex items-center justify-center
@@ -53,8 +49,8 @@ export default function Home() {
           </div>
           {/* Render selected component on top if any */}
           {selected && (
-            <div className="absolute inset-0 w-full h-full z-20 flex items-center justify-center">
-              <div className="flex items-center justify-center w-full h-full">
+            <div className="absolute inset-0 w-full z-20">
+              <div className="flex w-full">
                 {(() => {
                   switch (selected) {
                     case "Poetry":
@@ -76,9 +72,21 @@ export default function Home() {
           )}
         </div>
       </main>
-  <footer className="flex flex-wrap gap-4 sm:gap-6 items-center justify-center w-full px-2 text-sm sm:text-base mt-auto">
-
-      </footer>
+      {showBioOverlay && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-transparent">
+          <div className="relative shadow-lg bg-white rounded-lg  max-w-lg w-full p-6 text-black text-sm sm:text-base whitespace-pre-line">
+            <button
+              className="absolute top-2 right-2 text-gray-500 hover:text-black text-xl font-bold"
+              onClick={() => setShowBioOverlay(false)}
+              aria-label="Close biography"
+            >
+              ×
+            </button>
+            {`T. Person is an interdisciplinary writer, artist and publisher.
+They've produced film work, poems, essays, performances and music for various projects, including Embassy Gallery, Transmission Gallery and Hidden Door Festival. Their writing is published on numerous platforms: Gutter magazine, SPAM zine, Erotoplasty, Sand Journal and the 87 press. They founded —algia magazine and orangeapplepress, both micropresses for experimental writing; their EP 'The Sun / The Throat" was released by Sgarab Tapes, Cardiff, and are researching movement and sound for future performances at the critical junctures between privilege, ecology and mythmaking.`}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -22,8 +22,12 @@ export default function Visual({ setSelected }: { setSelected?: (val: string | n
   }, [images.length]);
 
   return (
-    <div className="flex flex-col md:flex-row gap-8 items-center w-full max-w-4xl mx-auto p-4">
-      {setSelected && <BackArrow onClick={() => setSelected(null)} />}
+    <div className="w-full max-w-2xl mx-auto px-2 sm:px-4 md:px-8 py-6 md:py-12 flex flex-col items-center">
+      {setSelected && (
+        <div className="w-full flex justify-end mb-4">
+          <BackArrow onClick={() => setSelected(null)} />
+        </div>
+      )}
       {/* Modal for video */}
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
