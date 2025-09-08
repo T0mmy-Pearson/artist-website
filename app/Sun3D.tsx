@@ -13,10 +13,10 @@ const Sun3D: React.FC = () => {
       "/imagees/Globe/Purple.JPG",
       "/imagees/Globe/Lilac.JPG"
     ];
-    // Pick a random texture on each load
+    // random texture 
     const randomIndex = Math.floor(Math.random() * globeTextures.length);
 
-  // Use const for variables that are never reassigned
+  // never assigned
 
     const handleResize = () => {
       if (!mountRef.current) return;
