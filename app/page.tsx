@@ -32,7 +32,7 @@ export default function Home() {
   }, [menuOpen]);
 
   return (
-    <div className="font-sans items-center justify-center gap-4 sm:gap-8 min-h-screen w-full relative">
+    <div className="font-sans w-full relative">
       {selected === null && (
         <MenuBar selected={selected} setSelected={setSelected} setShowBioOverlay={setShowBioOverlay} />
       )}
