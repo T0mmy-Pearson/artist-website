@@ -5,18 +5,21 @@ import * as THREE from "three";
 const Sun3D: React.FC = () => {
   const mountRef = useRef<HTMLDivElement>(null);
 
-
   useEffect(() => {
     const globeTextures = [
       "/imagees/Globe/Green.JPG",
       "/imagees/Globe/Pink.jpg",
       "/imagees/Globe/Purple.JPG",
-      "/imagees/Globe/Lilac.JPG"
+      "/imagees/Globe/Lilac.JPG",
     ];
-    // random texture 
+    // random texture
     const randomIndex = Math.floor(Math.random() * globeTextures.length);
 
-  // never assigned
+    const img = new window.Image();
+    img.src = "/imagees/Globe/Green.JPG";
+    img.onload = () => {
+      /* now safe to use in TextureLoader */
+    };
 
     const handleResize = () => {
       if (!mountRef.current) return;
@@ -42,33 +45,42 @@ const Sun3D: React.FC = () => {
     // Sphere geometry
     const geometry = new THREE.SphereGeometry(1, 64, 64);
     const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load(globeTextures[randomIndex]);
-  const material = new THREE.MeshBasicMaterial({ map: texture });
-  const sphere = new THREE.Mesh(geometry, material);
-  scene.add(sphere);
+    const texture = textureLoader.load(globeTextures[randomIndex]);
+    const material = new THREE.MeshBasicMaterial({ map: texture });
+    const sphere = new THREE.Mesh(geometry, material);
+    scene.add(sphere);
 
     // Animation loop
     const animate = () => {
       requestAnimationFrame(animate);
-  sphere.rotation.y += 0.001;
-  sphere.rotation.x += 0.0005;
+      sphere.rotation.y += 0.001;
+      sphere.rotation.x += 0.0005;
       renderer.render(scene, camera);
     };
     animate();
 
-  window.addEventListener('resize', handleResize);
-  handleResize();
+    window.addEventListener("resize", handleResize);
+    handleResize();
 
     // Cleanup
     return () => {
       renderer.dispose();
       if (mountNode) mountNode.removeChild(renderer.domElement);
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
   return (
-    <div ref={mountRef} style={{ width: "100%", height: "100%", position: "relative", maxWidth: "100vw", maxHeight: "100vh" }} />
+    <div
+      ref={mountRef}
+      style={{
+        width: "100%",
+        height: "100%",
+        position: "relative",
+        maxWidth: "100vw",
+        maxHeight: "100vh",
+      }}
+    />
   );
 };
 
