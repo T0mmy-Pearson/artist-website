@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef, useEffect } from "react";
 import * as THREE from "three";
-// @ts-ignore
+// @ts-expect-error: OrbitControls is not typed in three/examples/jsm/controls/OrbitControls
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 const Sun3D: React.FC = () => {
