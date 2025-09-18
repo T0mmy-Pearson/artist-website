@@ -1,6 +1,7 @@
 "use client";
 
 import Sun3D from "./Sun3D";
+import { FadeInPanel } from "./FadeInPanel";
 import Poetry from "./Poetry";
 import Visual from "./Visual";
 import Sound from "./Sound";
@@ -65,7 +66,6 @@ export default function Home() {
               <div className="flex w-full">
                 {(() => {
                   // Fade-in animation for all panels
-                  const { FadeInPanel } = require('./FadeInPanel');
                   const panel = (() => {
                     switch (selected) {
                       case "Poetry":

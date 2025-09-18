@@ -1,5 +1,6 @@
 import React from 'react';
 import BackArrow from './BackArrow';
+import Image from 'next/image';
 
 export default function Sound({ setSelected }: { setSelected?: (val: string | null) => void }) {
   const links = [
@@ -20,11 +21,14 @@ export default function Sound({ setSelected }: { setSelected?: (val: string | nu
   return (
   <div className="w-full shadow-md max-w-2xl mx-auto px-2 sm:px-4 md:px-8 pt-2 md:pt-4 pb-6 md:pb-12 md:h-96 flex flex-col items-center relative">
       <div className="absolute inset-0 z-0">
-        <img
+        <Image
           src="/imagees/sound/sun-1.jpg"
           alt="Sun background"
+          width={600}
+          height={400}
           className="w-full h-full object-cover rounded-lg"
           style={{ minHeight: 300 }}
+          priority
         />
       </div>
       <div className="relative z-10 w-full">
