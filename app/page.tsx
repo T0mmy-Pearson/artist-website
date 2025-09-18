@@ -33,6 +33,9 @@ export default function Home() {
 
   return (
     <div className="font-sans w-full relative">
+      <div style={{ position: "absolute", left: "-9999px", width: "400px", height: "400px" }}>
+        <Sun3D />
+      </div>
       {selected === null && (
         <MenuBar selected={selected} setSelected={setSelected} setShowBioOverlay={setShowBioOverlay} />
       )}
