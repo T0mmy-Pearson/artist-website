@@ -1,6 +1,8 @@
 "use client";
 import React, { useRef, useEffect } from "react";
 import * as THREE from "three";
+// @ts-ignore
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 const Sun3D: React.FC = () => {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -50,13 +52,20 @@ const Sun3D: React.FC = () => {
     const sphere = new THREE.Mesh(geometry, material);
     scene.add(sphere);
 
-    // Animation loop
-    const animate = () => {
+    // Controls
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.25;
+    controls.enableZoom = true;
+
+    // Animation loop: only rotate, no movement
+    function animate() {
       requestAnimationFrame(animate);
       sphere.rotation.y += 0.001;
       sphere.rotation.x += 0.0005;
+      controls.update();
       renderer.render(scene, camera);
-    };
+    }
     animate();
 
     window.addEventListener("resize", handleResize);
@@ -71,6 +80,7 @@ const Sun3D: React.FC = () => {
   }, []);
 
   return (
+    <>
     <div
       ref={mountRef}
       style={{
@@ -81,6 +91,7 @@ const Sun3D: React.FC = () => {
         maxHeight: "100vh",
       }}
     />
+    </>
   );
 };
 

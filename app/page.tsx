@@ -57,8 +57,8 @@ export default function Home() {
             style={{ pointerEvents: selected ? 'none' : 'auto' }}
           >
             <Sun3D />
-            <Sun3D />
-            <Sun3D />
+            {/* <Sun3D />
+            <Sun3D /> */}
           </div>
           {/* Render selected component on top if any */}
           {selected && (
