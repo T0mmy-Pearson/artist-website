@@ -37,7 +37,7 @@ export default function Home() {
   }, [menuOpen]);
 
   return (
-    <div className={`font-sans w-full relative transition-all duration-2000 ease-out
+    <div className={`font-sans w-full relative transition-all duration-5000 ease-out
         ${animateIn ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-50 translate-y-32"}
       `}>
       <div style={{ position: "absolute", left: "-9999px", width: "400px", height: "400px" }}>
