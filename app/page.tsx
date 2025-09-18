@@ -14,6 +14,11 @@ export default function Home() {
   const [selected, setSelected] = useState<string | null>(null);
   const [showBioOverlay, setShowBioOverlay] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const [animateIn, setAnimateIn] = useState(false);
+
+  useEffect(() => {
+    setAnimateIn(true);
+  }, []);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -32,7 +37,9 @@ export default function Home() {
   }, [menuOpen]);
 
   return (
-    <div className="font-sans w-full relative">
+    <div className={`font-sans w-full relative transition-all duration-1000 ease-out
+        ${animateIn ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-50 translate-y-32"}
+      `}>
       <div style={{ position: "absolute", left: "-9999px", width: "400px", height: "400px" }}>
         <Sun3D />
       </div>
