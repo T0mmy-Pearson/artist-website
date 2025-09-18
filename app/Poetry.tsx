@@ -23,9 +23,9 @@ export default function Poetry({ setSelected }: { setSelected?: (val: string | n
   const next = () => setCurrent((c) => (c + 1) % total);
 
   return (
-    <div className="w-full max-w-6xl mx-auto px-2 sm:px-4 md:px-8 flex flex-col items-center">
+  <div className="w-full max-w-6xl mx-auto px-2 sm:px-4 md:px-8  md:mt-[-66px] flex flex-col items-center">
       {setSelected && (
-        <div className="w-full flex justify-end mb-4">
+        <div className="w-full flex justify-end">
           <BackArrow onClick={() => setSelected(null)} />
         </div>
       )}

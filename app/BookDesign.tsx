@@ -5,29 +5,58 @@ import BackArrow from './BackArrow';
 export default function BookDesign({ setSelected }: { setSelected?: (val: string | null) => void }) {
   // Mock images from available assets
   const gallery = [
-    { src: '/imagees/Visual/CfW.jpg', alt: 'Book design sample 1' },
-    { src: '/imagees/Visual/Closure.jpg', alt: 'Book design sample 2' },
-    { src: '/imagees/Visual/Straw.JPG', alt: 'Book design sample 3' },
-    { src: '/imagees/Poetry/5.jpg', alt: 'Book design sample 4' },
-    { src: '/imagees/Poetry/Decalcomania.jpg', alt: 'Book design sample 5' },
-    { src: '/imagees/bdog.png', alt: 'Book design sample 6' },
-  ];
+    { src: '/imagees/Design/Caves-Cover.jpg', alt: 'Caves Cover' },
+    { src: '/imagees/Design/IMG_20210224_113159.jpg', alt: 'Cover of —algia #4' },
+    { src: '/imagees/Design/IMG_20210321_140024.jpg', alt: 'Imperative Utopia Cover' },
+    { src: '/imagees/Design/IMG_20210713_114729.jpg', alt: 'Minimalist Sweetheart and Imperative Utopia covers' },
+    { src: '/imagees/Design/JG.png', alt: 'Sekxphrastiks by Jane Goldman' },
+    { src: '/imagees/Design/algia3cover.jpg', alt: 'algia #4 cover' },
+      { src: '/imagees/Design/praxis.png', alt: 'Praxis Anthology edited by Andrew Hodgson' },
+    ];
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((c) => (c + 1) % gallery.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [gallery.length]);
   const [current, setCurrent] = useState(0);
   const total = gallery.length;
   const prev = () => setCurrent((c) => (c - 1 + total) % total);
   const next = () => setCurrent((c) => (c + 1) % total);
 
   return (
-    <div className="w-full max-w-2xl mx-auto px-2 sm:px-4 md:px-8 py-6 md:py-12 flex flex-col items-center">
+  <div className="w-full max-w-5xl mx-auto px-4 sm:px-8 md:px-16 pt-2 md:pt-4 pb-4 md:pb-8">
+  <h1 className="text-3xl md:text-4xl font-bold text-center mb-3 md:mb-6 tracking-tight text-gray-900">Book Design</h1>
       {setSelected && (
-        <div className="w-full flex justify-end mb-4">
+        <div className="w-full flex justify-end mb-8">
           <BackArrow onClick={() => setSelected(null)} />
         </div>
       )}
-
-      <div className="flex flex-col md:flex-row gap-8 items-start">
+      <div className="flex flex-col md:flex-row gap-16 md:gap-24 items-start md:items-center mt-0 md:mt-[-120px]">
+        {/* Carousel Gallery */}
+  <div className="w-full md:w-2/3 flex flex-col items-center justify-center mb-4 md:mb-0">
+          <div className="flex items-center justify-center w-full" style={{ minHeight: 400 }}>
+            <div className="bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center" style={{ width: 320, height: 420 }}>
+              <Image
+                src={gallery[current].src}
+                alt={gallery[current].alt}
+                width={300}
+                height={400}
+                className="object-cover mx-auto my-auto w-full h-full"
+                style={{ aspectRatio: '3/4', maxWidth: 300, maxHeight: 400 }}
+                sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 300px"
+                priority
+              />
+            </div>
+          </div>
+          <span className="text-xs text-gray-700 text-center block mb-2 px-1 break-words max-w-full">{gallery[current].alt}</span>
+          <div className="flex justify-center gap-2 sm:gap-4 mt-2 w-full">
+            <button onClick={prev} aria-label="Previous image" className="px-3 py-2 rounded hover:bg-gray-300 transition text-lg w-1/2 sm:w-auto">&#8592;</button>
+            <button onClick={next} aria-label="Next image" className="px-3 py-2 rounded hover:bg-gray-300 transition text-lg w-1/2 sm:w-auto">&#8594;</button>
+          </div>
+        </div>
         {/* Book Design List */}
-        <ul className="space-y-2 break-words w-full md:w-1/2 order-1 md:order-none">
+  <ul className="space-y-4 break-words w-full md:w-1/3 order-1 md:order-none bg-white/80 rounded-lg p-6 md:p-8">
           <li>
             <a href="https://www.scotlandstreetpress.com/" className="text-blue-700 hover:underline hover:text-blue-900 focus:underline" target="_blank" rel="noopener noreferrer">
               Scotland Street Press
@@ -59,27 +88,6 @@ export default function BookDesign({ setSelected }: { setSelected?: (val: string
             </a>, riso printed at Sundays, Glasgow, 2020
           </li>
         </ul>
-
-        {/* Carousel Gallery */}
-        <div className="w-full md:w-1/2 flex flex-col items-center justify-center mb-8 order-2 md:order-none">
-          <div className="relative w-full max-w-xs sm:max-w-sm flex items-center justify-center aspect-[3/4] bg-gray-100 rounded overflow-hidden mb-2 mx-auto mt-4 max-h-[60vh]">
-            <Image
-              src={gallery[current].src}
-              alt={gallery[current].alt}
-              width={300}
-              height={400}
-              className="object-cover w-full h-full"
-              style={{ aspectRatio: '3/4', maxWidth: '100%' }}
-              sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 300px"
-              priority
-            />
-          </div>
-          <span className="text-xs text-gray-700 text-center block mb-2 px-1 break-words max-w-full">{gallery[current].alt}</span>
-          <div className="flex justify-center gap-2 sm:gap-4 mt-2 w-full">
-            <button onClick={prev} aria-label="Previous image" className="px-3 py-2 rounded hover:bg-gray-300 transition text-lg w-1/2 sm:w-auto">&#8592;</button>
-            <button onClick={next} aria-label="Next image" className="px-3 py-2 rounded hover:bg-gray-300 transition text-lg w-1/2 sm:w-auto">&#8594;</button>
-          </div>
-        </div>
       </div>
     </div>
   );

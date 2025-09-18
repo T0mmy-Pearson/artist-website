@@ -8,11 +8,22 @@
     transform: translateY(0);
   }
 }
+
+@keyframes fadeInPanel {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
 @import "tailwindcss";
 
 :root {
   --background: #ffffff;
-  --foreground: #4e4d4d;
+  --foreground: #000000;
 }
 
 @theme inline {
@@ -25,7 +36,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #ffffff;
-    --foreground: #080707;
+    --foreground: #000000;
   }
 }
 

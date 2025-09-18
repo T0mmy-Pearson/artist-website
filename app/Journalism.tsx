@@ -39,7 +39,7 @@ export default function Journalism({ setSelected }: { setSelected?: (val: string
   ];
 
   return (
-    <div className="w-full max-w-2xl mx-auto px-2 sm:px-4 md:px-8 py-6 md:py-12 flex flex-col items-center">
+  <div className="w-full max-w-2xl mx-auto px-2 sm:px-4 md:px-8 pt-2 md:pt-4 pb-6 md:pb-12 flex flex-col items-center">
       {setSelected && (
         <div className="w-full flex justify-end mb-4">
           <BackArrow onClick={() => setSelected(null)} />

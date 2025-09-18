@@ -34,8 +34,8 @@ const Sun3D: React.FC = () => {
     const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
     camera.position.z = 2.5;
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setClearColor(0xffffff, 1);
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setClearColor(0xffffff, 1);
     const mountNode = mountRef.current;
     if (mountNode) {
       renderer.setSize(mountNode.clientWidth, mountNode.clientHeight, false);

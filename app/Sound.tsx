@@ -18,28 +18,38 @@ export default function Sound({ setSelected }: { setSelected?: (val: string | nu
   ];
 
   return (
-    <div className="w-full shadow-md max-w-2xl mx-auto px-2 sm:px-4 md:px-8 py-6 md:py-12 flex flex-col items-center">
-      {setSelected && (
-        <div className="w-full flex justify-end mb-4">
-          <BackArrow onClick={() => setSelected(null)} />
-        </div>
-      )}
-      <ul className="space-y-3 mt-4">
-        {links.map((item, idx) => (
-          <li key={idx} className="flex items-center gap-2">
-            <a
-              href={item.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 hover:underline focus:underline text-black font-medium group focus:outline-none"
-              aria-label={`Open ${item.label}`}
-            >
-              <span>{item.label}</span>
-              <span className="ml-1 text-lg group-hover:translate-x-1 transition-transform">→ listen</span>
-            </a>
-          </li>
-        ))}
-      </ul>
+  <div className="w-full shadow-md max-w-2xl mx-auto px-2 sm:px-4 md:px-8 pt-2 md:pt-4 pb-6 md:pb-12 md:h-96 flex flex-col items-center relative">
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/imagees/sound/sun-1.jpg"
+          alt="Sun background"
+          className="w-full h-full object-cover rounded-lg"
+          style={{ minHeight: 300 }}
+        />
+      </div>
+      <div className="relative z-10 w-full">
+        {setSelected && (
+          <div className="w-full flex justify-end mb-4">
+            <BackArrow onClick={() => setSelected(null)} />
+          </div>
+        )}
+        <ul className="space-y-3 mt-4">
+          {links.map((item, idx) => (
+            <li key={idx} className="flex items-center gap-2">
+              <a
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 hover:underline focus:underline text-black font-medium group focus:outline-none"
+                aria-label={`Open ${item.label}`}
+              >
+                <span>{item.label}</span>
+                <span className="ml-1 text-lg group-hover:translate-x-1 transition-transform">→ listen</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

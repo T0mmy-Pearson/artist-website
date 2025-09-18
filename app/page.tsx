@@ -56,26 +56,37 @@ export default function Home() {
             style={{ pointerEvents: selected ? 'none' : 'auto' }}
           >
             <Sun3D />
+            <Sun3D />
+            <Sun3D />
           </div>
           {/* Render selected component on top if any */}
           {selected && (
             <div className="absolute inset-0 w-full z-20">
               <div className="flex w-full">
                 {(() => {
-                  switch (selected) {
-                    case "Poetry":
-                      return <Poetry setSelected={setSelected} />;
-                    case "Visual":
-                      return <Visual setSelected={setSelected} />;
-                    case "Journalism":
-                      return <Journalism setSelected={setSelected} />;
-                    case "Sound":
-                      return <Sound setSelected={setSelected} />;
-                    case "BookDesign":
-                      return <BookDesign setSelected={setSelected} />;
-                    default:
-                      return null;
-                  }
+                  // Fade-in animation for all panels
+                  const { FadeInPanel } = require('./FadeInPanel');
+                  const panel = (() => {
+                    switch (selected) {
+                      case "Poetry":
+                        return <Poetry setSelected={setSelected} />;
+                      case "Visual":
+                        return <Visual setSelected={setSelected} />;
+                      case "Journalism":
+                        return <Journalism setSelected={setSelected} />;
+                      case "Sound":
+                        return <Sound setSelected={setSelected} />;
+                      case "BookDesign":
+                        return <BookDesign setSelected={setSelected} />;
+                      default:
+                        return null;
+                    }
+                  })();
+                  return (
+                    <div className="w-full h-full flex items-start justify-center mt-0 pt-0">
+                      <FadeInPanel>{panel}</FadeInPanel>
+                    </div>
+                  );
                 })()}
               </div>
             </div>
@@ -97,6 +108,7 @@ They've produced film work, poems, essays, performances and music for various pr
           </div>
         </div>
       )}
+      
     </div>
   );
 }

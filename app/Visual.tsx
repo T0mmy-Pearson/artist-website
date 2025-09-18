@@ -22,12 +22,7 @@ export default function Visual({ setSelected }: { setSelected?: (val: string | n
   }, [images.length]);
 
   return (
-    <div className="w-full max-w-2xl mx-auto px-2 sm:px-4 md:px-8 py-6 md:py-12 flex flex-col items-center">
-      {setSelected && (
-        <div className="w-full flex justify-end mb-4">
-          <BackArrow onClick={() => setSelected(null)} />
-        </div>
-      )}
+  <div className="w-full max-w-5xl mx-auto px-2 sm:px-4 md:px-8 pt-2 md:pt-4 pb-6 md:pb-12 flex flex-col md:flex-row gap-12 items-start">
       {/* Modal for video */}
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
@@ -49,20 +44,17 @@ export default function Visual({ setSelected }: { setSelected?: (val: string | n
           </div>
         </div>
       )}
-      <div className="w-full md:w-1/2 flex justify-center items-center relative">
+  <div className="w-full md:w-2/3 flex justify-center items-center relative">
         <Image
           src={images[index].src}
           alt="Visual artwork"
-          width={400}
-          height={400}
-          className="rounded shadow-lg max-h-[400px] object-contain transition-all duration-700"
-          style={{ width: '100%', maxWidth: 400 }}
+          width={600}
+          height={600}
+          className="rounded shadow-lg max-h-[600px] object-contain transition-all duration-700"
+          style={{ width: '100%', maxWidth: 600 }}
         />
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black bg-opacity-60 text-white px-4 py-2 rounded text-sm md:text-base transition-all duration-700 pointer-events-none whitespace-nowrap">
-          {images[index].tagline}
-        </div>
       </div>
-      <ul className="w-full md:w-1/2 space-y-4 text-black">
+  <ul className="w-full md:w-1/3 space-y-6 text-black text-lg">
         <li>“X”, a short film exhibited through Bold Mellon Collective at Rich Mix, Shoreditch, April 2024</li>
         <li>
             Elastic Love
@@ -76,6 +68,11 @@ export default function Visual({ setSelected }: { setSelected?: (val: string | n
         </li>
   <li>&quot;Double-Take&quot;, Glasgow School of Art<br />A collaborative exhibition of work produced between writers and designers, 2019</li>
       </ul>
+      {setSelected && (
+        <div className="flex justify-end mb-4">
+          <BackArrow onClick={() => setSelected(null)} />
+        </div>
+      )}
     </div>
   );
 }
