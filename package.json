@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "critters": "^0.0.23",
-    "next": "^15.5.3",
+    "next": "15.5.9",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "three": "^0.179.1"
