@@ -11,7 +11,8 @@ export default function BookDesign({ setSelected }: { setSelected?: (val: string
     { src: '/imagees/Design/IMG_20210713_114729.jpg', alt: 'Minimalist Sweetheart and Imperative Utopia covers' },
     { src: '/imagees/Design/JG.png', alt: 'Sekxphrastiks by Jane Goldman' },
     { src: '/imagees/Design/algia3cover.jpg', alt: 'algia #4 cover' },
-      { src: '/imagees/Design/praxis.png', alt: 'Praxis Anthology edited by Andrew Hodgson' },
+    { src: '/imagees/Design/praxis.png', alt: 'Praxis Anthology edited by Andrew Hodgson' },
+    { src: '/imagees/Design/WG-7.png', alt: 'Wet Grain: Issue 7'}
     ];
   React.useEffect(() => {
     const interval = setInterval(() => {
@@ -57,6 +58,11 @@ export default function BookDesign({ setSelected }: { setSelected?: (val: string
         </div>
         {/* Book Design List */}
   <ul className="space-y-4 break-words w-full md:w-1/3 order-1 md:order-none bg-white/80 rounded-lg p-6 md:p-8">
+          <li>
+            <a href="https://www.instagram.com/wetgrainpoetry/" className="text-blue-700 hover:underline hover:text-blue-900 focus:underline" target="_blank" rel="noopener noreferrer">
+              Wet Grain Issue 7
+            </a>, Typesetter, 2026
+          </li>
           <li>
             <a href="https://www.scotlandstreetpress.com/" className="text-blue-700 hover:underline hover:text-blue-900 focus:underline" target="_blank" rel="noopener noreferrer">
               Scotland Street Press

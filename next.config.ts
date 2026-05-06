@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
     formats: ['image/webp'],
   },
     experimental: {
-      optimizeCss: true,
+      optimizeCss: process.env.NODE_ENV === "production",
     },
 };
 
